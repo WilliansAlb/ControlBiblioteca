@@ -1,0 +1,27 @@
+CARGA DE ARCHIVOS
+# Por favor ingrese el mensaje del commit para sus cambios. Las líneas que comiencen
+# con '#' serán ignoradas, y un mensaje vacío aborta el commit.
+#
+# En la rama master
+# Tu rama está adelantada a 'origin/master' por 2 commits.
+#   (usa "git push" para publicar tus commits locales)
+#
+# Cambios a ser confirmados:
+#	modificado:     build/classes/controlbiblioteca/Biblioteca.class
+#	modificado:     build/classes/controlbiblioteca/CargarArchivo.class
+#	modificado:     build/classes/controlbiblioteca/ControlBiblioteca.class
+#	modificado:     build/classes/controlbiblioteca/Estudiantes.class
+#	modificad
+o:     build/classes/controlbiblioteca/Libros.class
+#	modificado:     build/classes/controlbiblioteca/ManejarArchivo.class
+#	nuevo archivo:  build/classes/controlbiblioteca/Menu$1.class
+#	nuevo archivo:  build/classes/controlbiblioteca/Menu$2.class
+#	nuevo archivo:  build/classes/controlbiblioteca/Menu.class
+#	nuevo archivo:  build/classes/controlbiblioteca/Menu.form
+#	modificado:     build/classes/controlbiblioteca/Prestamos.class
+#	modificado:     build/classes/controlbiblioteca/Reportes.class
+#	nuevo archivo:  modificado
+#	modificado:     nbproject/private/private.properties
+#	modificado:     src/controlbiblioteca/CargarArchivo.java
+#	modificado:     src/controlbiblioteca/ControlBiblioteca.java
+#

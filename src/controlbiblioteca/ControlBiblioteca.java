@@ -14,5 +14,9 @@ public class ControlBiblioteca {
     public static void main(String args[]){
         Biblioteca nueva = new Biblioteca();
         nueva.setVisible(true);
+        Menu ir=new Menu();
+        ir.setVisible(true);
     }
+  
+   
 }
