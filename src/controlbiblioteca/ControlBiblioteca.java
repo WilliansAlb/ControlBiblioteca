@@ -16,7 +16,5 @@ public class ControlBiblioteca {
         nueva.setVisible(true);
         Menu ir=new Menu();
         ir.setVisible(true);
-    }
-  
-   
+    }   
 }

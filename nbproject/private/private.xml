@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/willians/Escritorio/Proyectos/ControlBiblioteca/ControlBiblioteca/src/controlbiblioteca/ControlBiblioteca.java</file>
-            <file>file:/home/willians/Escritorio/Proyectos/ControlBiblioteca/ControlBiblioteca/src/controlbiblioteca/Reportes.java</file>
-            <file>file:/home/willians/Escritorio/Proyectos/ControlBiblioteca/ControlBiblioteca/src/controlbiblioteca/Libros.java</file>
-            <file>file:/home/willians/Escritorio/Proyectos/ControlBiblioteca/ControlBiblioteca/src/controlbiblioteca/Biblioteca.java</file>
-            <file>file:/home/willians/Escritorio/Proyectos/ControlBiblioteca/ControlBiblioteca/src/controlbiblioteca/CargarArchivo.java</file>
-            <file>file:/home/willians/Escritorio/Proyectos/ControlBiblioteca/ControlBiblioteca/src/controlbiblioteca/Estudiantes.java</file>
-            <file>file:/home/willians/Escritorio/Proyectos/ControlBiblioteca/ControlBiblioteca/src/controlbiblioteca/ManejarArchivo.java</file>
-            <file>file:/home/willians/Escritorio/Proyectos/ControlBiblioteca/ControlBiblioteca/src/controlbiblioteca/Prestamos.java</file>
+            <file>file:/home/bladimir/ControlBiblioteca/src/controlbiblioteca/Menu.java</file>
+            <file>file:/home/bladimir/ControlBiblioteca/src/controlbiblioteca/ControlBiblioteca.java</file>
+            <file>file:/home/bladimir/ControlBiblioteca/src/controlbiblioteca/Biblioteca.java</file>
         </group>
     </open-files>
 </project-private>
