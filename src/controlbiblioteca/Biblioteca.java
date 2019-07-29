@@ -6,7 +6,6 @@
 package controlbiblioteca;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 /**
  *
@@ -42,4 +41,8 @@ public class Biblioteca extends javax.swing.JFrame{
         pestañas.add("Reportes", reporte);
         add(pestañas);
     }
+    
+    
+  
+ 
 }
