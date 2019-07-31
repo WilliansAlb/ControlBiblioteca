@@ -17,24 +17,15 @@ import javax.swing.JPanel;
 public class Menu extends javax.swing.JFrame {
     public Image imagenFondo;
     public URL fondo;
+    public Libros libro;
+    public Estudiantes estudiante;
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
-        
-        fondo = this.getClass().getResource("/controlbiblioteca/biblioteca3.png");
-        imagenFondo = new ImageIcon(fondo).getImage();
-        
-        //add(panel5);
         iniciarComponentes();
     }
-    public JPanel panel5 = new JPanel(){
-    @Override
-    public void paintComponent(Graphics g){
-        g.drawImage(imagenFondo,getWidth(),getHeight(),this);
-    }
-    };
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,9 +45,11 @@ public class Menu extends javax.swing.JFrame {
         buscarEstudiante = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        buscarEText = new javax.swing.JTextField();
+        tipoEBox = new javax.swing.JComboBox<>();
         botonBusquedaE = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         ingresarEstudiante = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -74,24 +67,26 @@ public class Menu extends javax.swing.JFrame {
         botonIngresarL = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         buscarLibroPanel = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel15 = new javax.swing.JLabel();
+        libroL1 = new javax.swing.JLabel();
+        libroL2 = new javax.swing.JLabel();
+        tipoLBox = new javax.swing.JComboBox<>();
+        buscarLText = new javax.swing.JTextField();
+        buscarLBoton = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         ingresarLibroPanel = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        libroL3 = new javax.swing.JLabel();
+        libroL4 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
+        libroTextTitulo = new javax.swing.JTextField();
+        libroTextCodigo = new javax.swing.JTextField();
+        libroTextAutor = new javax.swing.JTextField();
+        libroTextEditorial = new javax.swing.JTextField();
+        libroTextFecha = new javax.swing.JTextField();
+        ingresarLBoton = new javax.swing.JButton();
         prestamosPanel = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         botonBuscarP = new javax.swing.JButton();
@@ -100,29 +95,33 @@ public class Menu extends javax.swing.JFrame {
         jLayeredPane3 = new javax.swing.JLayeredPane();
         buscarPrestamo = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jButton8 = new javax.swing.JButton();
+        buscarPText = new javax.swing.JTextField();
+        tipoPBox = new javax.swing.JComboBox<>();
+        buscarPBoton = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
         nuevoPrestamo = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
-        jButton9 = new javax.swing.JButton();
+        prestamoCodigoText = new javax.swing.JTextField();
+        prestamoCarneText = new javax.swing.JTextField();
+        prestamoFechaText = new javax.swing.JTextField();
+        crearPrestamo = new javax.swing.JButton();
         devolverPrestamo = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
-        jTextField16 = new javax.swing.JTextField();
-        jComboBox4 = new javax.swing.JComboBox<>();
         jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jButton11 = new javax.swing.JButton();
+        montoDinero = new javax.swing.JLabel();
+        botonDevolucion = new javax.swing.JButton();
+        buscarDevolucionText = new javax.swing.JTextField();
+        tipoDevolucionPBox = new javax.swing.JComboBox<>();
+        botonDevolver = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
         archivosPanel = new javax.swing.JPanel();
         Aceptar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -132,6 +131,10 @@ public class Menu extends javax.swing.JFrame {
         jTextArea2 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        reportesPanel = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        generaReportesBox = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         jLabel34 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -140,10 +143,14 @@ public class Menu extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTabbedPane1.setBackground(java.awt.Color.white);
+        jTabbedPane1.setBorder(null);
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
         estudiantesPanel.setBackground(new java.awt.Color(254, 254, 254));
+        estudiantesPanel.setOpaque(false);
 
+        jLabel4.setBackground(new java.awt.Color(254, 254, 254));
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 22)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("¿Qué harás?");
@@ -174,9 +181,31 @@ public class Menu extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Busqueda por:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Carné", "Carrera" }));
+        buscarEText.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
 
+        tipoEBox.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        tipoEBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Carné", "Carrera" }));
+
+        botonBusquedaE.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         botonBusquedaE.setText("BUSCAR");
+        botonBusquedaE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBusquedaEActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Carné", "Carrera", "Fecha de Nacimiento"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
 
         javax.swing.GroupLayout buscarEstudianteLayout = new javax.swing.GroupLayout(buscarEstudiante);
         buscarEstudiante.setLayout(buscarEstudianteLayout);
@@ -185,14 +214,17 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(buscarEstudianteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(buscarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buscarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonBusquedaE)
+                    .addComponent(jScrollPane3)
+                    .addGroup(buscarEstudianteLayout.createSequentialGroup()
+                        .addGroup(buscarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                            .addComponent(buscarEText))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(buscarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tipoEBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonBusquedaE)))
                 .addContainerGap())
         );
         buscarEstudianteLayout.setVerticalGroup(
@@ -204,10 +236,12 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(buscarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarEText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tipoEBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonBusquedaE))
-                .addContainerGap(267, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         ingresarEstudiante.setOpaque(false);
@@ -229,6 +263,8 @@ public class Menu extends javax.swing.JFrame {
         jLabel12.setText("Carrera:");
 
         jButton4.setText("INGRESAR");
+        jButton4.setToolTipText("");
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout ingresarEstudianteLayout = new javax.swing.GroupLayout(ingresarEstudiante);
         ingresarEstudiante.setLayout(ingresarEstudianteLayout);
@@ -255,10 +291,10 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(jTextField5)))
                 .addContainerGap())
             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ingresarEstudianteLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(221, 221, 221))
+            .addGroup(ingresarEstudianteLayout.createSequentialGroup()
+                .addGap(256, 256, 256)
+                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                .addGap(258, 258, 258))
         );
         ingresarEstudianteLayout.setVerticalGroup(
             ingresarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +319,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jLayeredPane1.setLayer(buscarEstudiante, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -293,7 +329,9 @@ public class Menu extends javax.swing.JFrame {
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ingresarEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addComponent(ingresarEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 24, Short.MAX_VALUE))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(buscarEstudiante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -314,10 +352,10 @@ public class Menu extends javax.swing.JFrame {
             estudiantesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLayeredPane1)
             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, estudiantesPanelLayout.createSequentialGroup()
-                .addContainerGap(249, Short.MAX_VALUE)
+            .addGroup(estudiantesPanelLayout.createSequentialGroup()
+                .addGap(228, 228, 228)
                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(211, 211, 211))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         estudiantesPanelLayout.setVerticalGroup(
             estudiantesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,8 +370,9 @@ public class Menu extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Estudiantes", estudiantesPanel);
 
-        librosPanel.setBackground(new java.awt.Color(254, 254, 254));
+        librosPanel.setBackground(java.awt.Color.white);
         librosPanel.setBorder(null);
+        librosPanel.setOpaque(false);
 
         jLabel13.setFont(new java.awt.Font("Ubuntu", 1, 22)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -355,19 +394,34 @@ public class Menu extends javax.swing.JFrame {
 
         buscarLibroPanel.setOpaque(false);
 
-        jLabel14.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Ingresa lo que desees buscar:");
+        libroL1.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        libroL1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        libroL1.setText("Ingresa lo que desees buscar:");
 
-        jTextField6.setText("jTextField6");
+        libroL2.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        libroL2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        libroL2.setText("Busqueda por:");
 
-        jButton5.setText("BUSCAR");
+        tipoLBox.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        tipoLBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Titulo", "Autor", "Codigo", "Editorial" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        buscarLText.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
 
-        jLabel15.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Busqueda por:");
+        buscarLBoton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        buscarLBoton.setText("BUSCAR");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Titulo", "Autor", "Codigo del Libro", "Copias", "Fecha Publicacion", "Editorial"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable2);
 
         javax.swing.GroupLayout buscarLibroPanelLayout = new javax.swing.GroupLayout(buscarLibroPanel);
         buscarLibroPanel.setLayout(buscarLibroPanelLayout);
@@ -375,15 +429,18 @@ public class Menu extends javax.swing.JFrame {
             buscarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buscarLibroPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(buscarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField6)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(buscarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
+                    .addComponent(jScrollPane5)
+                    .addGroup(buscarLibroPanelLayout.createSequentialGroup()
+                        .addGroup(buscarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(buscarLText)
+                            .addComponent(libroL1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(buscarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tipoLBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(libroL2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buscarLBoton)))
                 .addContainerGap())
         );
         buscarLibroPanelLayout.setVerticalGroup(
@@ -391,111 +448,103 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(buscarLibroPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(buscarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
+                    .addComponent(libroL1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(libroL2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(buscarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(271, Short.MAX_VALUE))
+                    .addComponent(buscarLText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarLBoton)
+                    .addComponent(tipoLBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         ingresarLibroPanel.setOpaque(false);
 
-        jLabel16.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Datos");
+        libroL3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        libroL3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        libroL3.setText("Datos");
 
-        jLabel17.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel17.setText("Titulo del libro:");
-
-        jTextField7.setText("jTextField7");
+        libroL4.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        libroL4.setText("Titulo del libro:");
 
         jLabel18.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel18.setText("Codigo del libro:");
 
-        jTextField8.setText("jTextField8");
-
         jLabel19.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel19.setText("Autor del libro:");
-
-        jTextField9.setText("jTextField9");
 
         jLabel20.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel20.setText("Editorial:");
 
-        jTextField10.setText("jTextField10");
-
         jLabel21.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel21.setText("Fecha de publicación:");
 
-        jTextField11.setText("jTextField11");
-
-        jButton6.setText("INGRESAR");
+        ingresarLBoton.setText("INGRESAR");
 
         javax.swing.GroupLayout ingresarLibroPanelLayout = new javax.swing.GroupLayout(ingresarLibroPanel);
         ingresarLibroPanel.setLayout(ingresarLibroPanelLayout);
         ingresarLibroPanelLayout.setHorizontalGroup(
             ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(libroL3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel17)
+                        .addComponent(libroL4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField7))
+                        .addComponent(libroTextTitulo))
                     .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField9))
+                        .addComponent(libroTextAutor))
                     .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField8))
+                        .addComponent(libroTextCodigo))
                     .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField10))
+                        .addComponent(libroTextEditorial))
                     .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField11)))
+                        .addComponent(libroTextFecha)))
                 .addContainerGap())
             .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
                 .addGap(242, 242, 242)
-                .addComponent(jButton6)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addComponent(ingresarLBoton)
+                .addContainerGap(288, Short.MAX_VALUE))
         );
         ingresarLibroPanelLayout.setVerticalGroup(
             ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel16)
+                .addComponent(libroL3)
                 .addGap(18, 18, 18)
                 .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(libroL4)
+                    .addComponent(libroTextTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(libroTextAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(libroTextCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(libroTextEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(libroTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton6)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addComponent(ingresarLBoton)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jLayeredPane2.setLayer(buscarLibroPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -520,14 +569,14 @@ public class Menu extends javax.swing.JFrame {
         librosPanel.setLayout(librosPanelLayout);
         librosPanelLayout.setHorizontalGroup(
             librosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2)
             .addGroup(librosPanelLayout.createSequentialGroup()
                 .addGap(219, 219, 219)
                 .addComponent(botonBuscarL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonIngresarL)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 277, Short.MAX_VALUE))
             .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLayeredPane2)
         );
         librosPanelLayout.setVerticalGroup(
             librosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -544,6 +593,8 @@ public class Menu extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Libros", librosPanel);
 
+        prestamosPanel.setBackground(java.awt.Color.white);
+        prestamosPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         prestamosPanel.setOpaque(false);
 
         jLabel22.setFont(new java.awt.Font("Ubuntu", 1, 22)); // NOI18N
@@ -580,15 +631,50 @@ public class Menu extends javax.swing.JFrame {
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("Ingresa lo que desees buscar:");
 
-        jTextField12.setText("jTextField12");
-
         jLabel24.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel24.setText("Busqueda por:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        buscarPText.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
 
-        jButton8.setText("BUSCAR");
+        tipoPBox.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        tipoPBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo del libro", "Carne del estudiante", "Fecha" }));
+        tipoPBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoPBoxActionPerformed(evt);
+            }
+        });
+
+        buscarPBoton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        buscarPBoton.setText("BUSCAR");
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Codigo Libro", "Carné Estudiante", "Fecha Prestamo", "Monto a Pagar"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, true, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(jTable3);
 
         javax.swing.GroupLayout buscarPrestamoLayout = new javax.swing.GroupLayout(buscarPrestamo);
         buscarPrestamo.setLayout(buscarPrestamoLayout);
@@ -597,14 +683,17 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(buscarPrestamoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(buscarPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField12)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buscarPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
+                    .addComponent(jScrollPane6)
+                    .addGroup(buscarPrestamoLayout.createSequentialGroup()
+                        .addGroup(buscarPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buscarPText)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(buscarPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tipoPBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarPBoton)))
                 .addContainerGap())
         );
         buscarPrestamoLayout.setVerticalGroup(
@@ -616,10 +705,12 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jLabel24))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(buscarPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8))
-                .addContainerGap(256, Short.MAX_VALUE))
+                    .addComponent(buscarPText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tipoPBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarPBoton))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         nuevoPrestamo.setOpaque(false);
@@ -637,16 +728,16 @@ public class Menu extends javax.swing.JFrame {
         jLabel28.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel28.setText("Fecha del prestamo:");
 
-        jTextField13.setText("jTextField13");
-
-        jTextField14.setText("jTextField14");
-
-        jTextField15.setText("jTextField15");
-
-        jButton9.setText("CREAR");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        prestamoCodigoText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                prestamoCodigoTextActionPerformed(evt);
+            }
+        });
+
+        crearPrestamo.setText("CREAR");
+        crearPrestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearPrestamoActionPerformed(evt);
             }
         });
 
@@ -661,20 +752,20 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(nuevoPrestamoLayout.createSequentialGroup()
                         .addComponent(jLabel26)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField13))
+                        .addComponent(prestamoCodigoText))
                     .addGroup(nuevoPrestamoLayout.createSequentialGroup()
                         .addComponent(jLabel28)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField15))
+                        .addComponent(prestamoFechaText))
                     .addGroup(nuevoPrestamoLayout.createSequentialGroup()
                         .addComponent(jLabel27)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField14)))
+                        .addComponent(prestamoCarneText)))
                 .addContainerGap())
             .addGroup(nuevoPrestamoLayout.createSequentialGroup()
                 .addGap(235, 235, 235)
-                .addComponent(jButton9)
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addComponent(crearPrestamo)
+                .addContainerGap(317, Short.MAX_VALUE))
         );
         nuevoPrestamoLayout.setVerticalGroup(
             nuevoPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -684,17 +775,17 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(nuevoPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(prestamoCodigoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(nuevoPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(prestamoCarneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(nuevoPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jButton9)
+                    .addComponent(prestamoFechaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(crearPrestamo)
                 .addContainerGap())
         );
 
@@ -704,74 +795,87 @@ public class Menu extends javax.swing.JFrame {
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel29.setText("Devolución de un libro");
 
+        jLabel30.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel30.setText("Buscar libro a devolver:");
 
+        jLabel31.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel31.setText("Busqueda por:");
-
-        jButton10.setText("BUSCAR");
-
-        jTextField16.setText("jTextField16");
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel32.setText("MONTO A PAGAR:");
 
-        jLabel33.setText("dinero");
+        montoDinero.setText("dinero");
 
-        jButton11.setText("DEVOLVER");
+        botonDevolucion.setText("BUSCAR");
+
+        buscarDevolucionText.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+
+        tipoDevolucionPBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo del libro", "Carne estudiante", "Fecha" }));
+
+        botonDevolver.setText("DEVOLVER");
+
+        jTextArea3.setColumns(20);
+        jTextArea3.setRows(5);
+        jScrollPane4.setViewportView(jTextArea3);
 
         javax.swing.GroupLayout devolverPrestamoLayout = new javax.swing.GroupLayout(devolverPrestamo);
         devolverPrestamo.setLayout(devolverPrestamoLayout);
         devolverPrestamoLayout.setHorizontalGroup(
             devolverPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(devolverPrestamoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(devolverPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, devolverPrestamoLayout.createSequentialGroup()
+                .addGroup(devolverPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(devolverPrestamoLayout.createSequentialGroup()
-                        .addGroup(devolverPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel32)
-                            .addGroup(devolverPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField16)
-                                .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
+                        .addComponent(jScrollPane4))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, devolverPrestamoLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(devolverPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(devolverPrestamoLayout.createSequentialGroup()
-                                .addGroup(devolverPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                                .addGroup(devolverPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(buscarDevolucionText)
+                                    .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton10))
+                                .addGroup(devolverPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tipoDevolucionPBox, 0, 242, Short.MAX_VALUE)
+                                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonDevolucion))
                             .addGroup(devolverPrestamoLayout.createSequentialGroup()
-                                .addComponent(jLabel33)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(jLabel32)
+                                .addGap(18, 18, 18)
+                                .addComponent(montoDinero)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, devolverPrestamoLayout.createSequentialGroup()
+                        .addGap(248, 248, 248)
+                        .addComponent(botonDevolver)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(devolverPrestamoLayout.createSequentialGroup()
-                .addGap(227, 227, 227)
-                .addComponent(jButton11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         devolverPrestamoLayout.setVerticalGroup(
             devolverPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(devolverPrestamoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel29)
-                .addGap(77, 77, 77)
+                .addGap(26, 26, 26)
                 .addGroup(devolverPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
                     .addComponent(jLabel31))
                 .addGap(18, 18, 18)
                 .addGroup(devolverPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                    .addComponent(tipoDevolucionPBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarDevolucionText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonDevolucion))
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
                 .addGroup(devolverPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
-                    .addComponent(jLabel33))
+                    .addComponent(montoDinero))
                 .addGap(18, 18, 18)
-                .addComponent(jButton11)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addComponent(botonDevolver)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         jLayeredPane3.setLayer(buscarPrestamo, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -813,11 +917,9 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(botonNuevoP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botonDevolverP)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(prestamosPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLayeredPane3)))
+                        .addGap(0, 183, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(jLayeredPane3)
         );
         prestamosPanelLayout.setVerticalGroup(
             prestamosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -830,12 +932,12 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(botonNuevoP)
                     .addComponent(botonDevolverP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane3)
-                .addContainerGap())
+                .addComponent(jLayeredPane3))
         );
 
         jTabbedPane1.addTab("Prestamos", prestamosPanel);
 
+        archivosPanel.setBackground(java.awt.Color.white);
         archivosPanel.setOpaque(false);
 
         Aceptar.setText("Aceptar");
@@ -880,7 +982,7 @@ public class Menu extends javax.swing.JFrame {
                         .addGroup(archivosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         archivosPanelLayout.setVerticalGroup(
             archivosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -902,10 +1004,49 @@ public class Menu extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Cargar Archivo", archivosPanel);
 
+        jLabel7.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Generador de Reportes");
+
+        generaReportesBox.setEditable(true);
+        generaReportesBox.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        generaReportesBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Listado libros a devolver hoy", "Listado libros con mora", "Listado de libros prestados", "Monto recaudado por prestamos en un intervalo de tiempo", "Libros prestados por un estudiante", "Reporte libros prestados por carreras" }));
+
+        jButton1.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        jButton1.setText("GENERAR");
+
+        javax.swing.GroupLayout reportesPanelLayout = new javax.swing.GroupLayout(reportesPanel);
+        reportesPanel.setLayout(reportesPanelLayout);
+        reportesPanelLayout.setHorizontalGroup(
+            reportesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(reportesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                    .addGroup(reportesPanelLayout.createSequentialGroup()
+                        .addComponent(generaReportesBox, 0, 1, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)))
+                .addGap(39, 39, 39))
+        );
+        reportesPanelLayout.setVerticalGroup(
+            reportesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addGroup(reportesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(generaReportesBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(335, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Generar Reporte", reportesPanel);
+
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 428));
 
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/controlbiblioteca/biblioteca3.jpg"))); // NOI18N
-        getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 520));
+        getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 520));
 
         pack();
         setLocationRelativeTo(null);
@@ -927,9 +1068,9 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AceptarActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void crearPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearPrestamoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_crearPrestamoActionPerformed
 
     private void botonDevolverPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDevolverPActionPerformed
         botonBuscarP.setEnabled(true);
@@ -985,6 +1126,21 @@ public class Menu extends javax.swing.JFrame {
         buscarEstudiante.setVisible(true);
         ingresarEstudiante.setVisible(false);
     }//GEN-LAST:event_botonBuscarEActionPerformed
+
+    private void tipoPBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoPBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipoPBoxActionPerformed
+
+    private void prestamoCodigoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamoCodigoTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prestamoCodigoTextActionPerformed
+
+    private void botonBusquedaEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaEActionPerformed
+        String estudianteVerifica = buscarEText.getText();
+        String verificandoEstudiante1 = tipoEBox.getSelectedItem().toString();
+        estudiante = new Estudiantes();
+        estudiante.verificarEstudiante(verificandoEstudiante1, estudianteVerifica);
+    }//GEN-LAST:event_botonBusquedaEActionPerformed
 
     private void iniciarComponentes(){
         ingresarLibroPanel.setVisible(false);
@@ -1043,37 +1199,35 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton botonBuscarL;
     private javax.swing.JButton botonBuscarP;
     private javax.swing.JButton botonBusquedaE;
+    private javax.swing.JButton botonDevolucion;
+    private javax.swing.JButton botonDevolver;
     private javax.swing.JButton botonDevolverP;
     private javax.swing.JButton botonIngresarE;
     private javax.swing.JButton botonIngresarL;
     private javax.swing.JButton botonNuevoP;
+    private javax.swing.JTextField buscarDevolucionText;
+    private javax.swing.JTextField buscarEText;
     private javax.swing.JPanel buscarEstudiante;
+    private javax.swing.JButton buscarLBoton;
+    private javax.swing.JTextField buscarLText;
     private javax.swing.JPanel buscarLibroPanel;
+    private javax.swing.JButton buscarPBoton;
+    private javax.swing.JTextField buscarPText;
     private javax.swing.JPanel buscarPrestamo;
+    private javax.swing.JButton crearPrestamo;
     private javax.swing.JPanel devolverPrestamo;
     private javax.swing.JPanel estudiantesPanel;
+    private javax.swing.JComboBox<String> generaReportesBox;
     private javax.swing.JPanel ingresarEstudiante;
+    private javax.swing.JButton ingresarLBoton;
     private javax.swing.JPanel ingresarLibroPanel;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -1091,11 +1245,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
@@ -1103,28 +1257,42 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
+    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel libroL1;
+    private javax.swing.JLabel libroL2;
+    private javax.swing.JLabel libroL3;
+    private javax.swing.JLabel libroL4;
+    private javax.swing.JTextField libroTextAutor;
+    private javax.swing.JTextField libroTextCodigo;
+    private javax.swing.JTextField libroTextEditorial;
+    private javax.swing.JTextField libroTextFecha;
+    private javax.swing.JTextField libroTextTitulo;
     private javax.swing.JPanel librosPanel;
+    private javax.swing.JLabel montoDinero;
     private javax.swing.JPanel nuevoPrestamo;
+    private javax.swing.JTextField prestamoCarneText;
+    private javax.swing.JTextField prestamoCodigoText;
+    private javax.swing.JTextField prestamoFechaText;
     private javax.swing.JPanel prestamosPanel;
+    private javax.swing.JPanel reportesPanel;
+    private javax.swing.JComboBox<String> tipoDevolucionPBox;
+    private javax.swing.JComboBox<String> tipoEBox;
+    private javax.swing.JComboBox<String> tipoLBox;
+    private javax.swing.JComboBox<String> tipoPBox;
     // End of variables declaration//GEN-END:variables
 }

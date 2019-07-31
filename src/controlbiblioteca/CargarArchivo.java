@@ -15,19 +15,19 @@ public class CargarArchivo {
 	javax.swing.JFileChooser j= new javax.swing.JFileChooser();
 	j.showOpenDialog(j);
 	try{
-	String path= j.getSelectedFile().getAbsolutePath();
-	String lectura="";
-	f = new File(path);
+            String path= j.getSelectedFile().getAbsolutePath();
+            String lectura="";
+            f = new File(path);
 	try{
-	FileReader fr = new FileReader(f);
-	BufferedReader br = new BufferedReader(fr);
-	String aux;
-	while((aux = br.readLine())!=null)
-	lectura = lectura+aux+"\n";
+            FileReader fr = new FileReader(f);
+            BufferedReader br = new BufferedReader(fr);
+            String aux;
+            while((aux = br.readLine())!=null)
+            lectura = lectura+aux+"\n";
 	}catch(IOException e){}
-	return lectura;
+            return lectura;
 	}catch(NullPointerException e){
-	javax.swing.JOptionPane.showMessageDialog(j, "Has seleccionado cerrar programa, saliendo...");
-	System.exit(0);
+            javax.swing.JOptionPane.showMessageDialog(j, "Has seleccionado cerrar programa, saliendo...");
+            System.exit(0);
 	}return null;  
 }}
