@@ -129,7 +129,5 @@ public class Estudiantes {
             System.out.println("No es una carrera");
             }
         }
-    
-    
     }
 }

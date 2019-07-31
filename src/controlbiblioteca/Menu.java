@@ -19,6 +19,7 @@ public class Menu extends javax.swing.JFrame {
     public URL fondo;
     public Libros libro;
     public Estudiantes estudiante;
+    public Prestamos1 prestamo;
     /**
      * Creates new form Menu
      */
@@ -319,7 +320,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jLayeredPane1.setLayer(buscarEstudiante, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -409,6 +410,11 @@ public class Menu extends javax.swing.JFrame {
 
         buscarLBoton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         buscarLBoton.setText("BUSCAR");
+        buscarLBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarLBotonActionPerformed(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -647,6 +653,11 @@ public class Menu extends javax.swing.JFrame {
 
         buscarPBoton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         buscarPBoton.setText("BUSCAR");
+        buscarPBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarPBotonActionPerformed(evt);
+            }
+        });
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -709,7 +720,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(tipoPBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarPBoton))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -808,6 +819,11 @@ public class Menu extends javax.swing.JFrame {
         montoDinero.setText("dinero");
 
         botonDevolucion.setText("BUSCAR");
+        botonDevolucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDevolucionActionPerformed(evt);
+            }
+        });
 
         buscarDevolucionText.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
 
@@ -1038,7 +1054,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(reportesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(generaReportesBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addContainerGap(335, Short.MAX_VALUE))
+                .addContainerGap(342, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Generar Reporte", reportesPanel);
@@ -1132,7 +1148,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_tipoPBoxActionPerformed
 
     private void prestamoCodigoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamoCodigoTextActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_prestamoCodigoTextActionPerformed
 
     private void botonBusquedaEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaEActionPerformed
@@ -1141,6 +1157,27 @@ public class Menu extends javax.swing.JFrame {
         estudiante = new Estudiantes();
         estudiante.verificarEstudiante(verificandoEstudiante1, estudianteVerifica);
     }//GEN-LAST:event_botonBusquedaEActionPerformed
+
+    private void buscarLBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLBotonActionPerformed
+        String libroVerifica = buscarLText.getText();
+        String verificandoLibro = tipoLBox.getSelectedItem().toString();
+        libro = new Libros();
+        libro.verificarLibro1(verificandoLibro, libroVerifica);
+    }//GEN-LAST:event_buscarLBotonActionPerformed
+
+    private void buscarPBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPBotonActionPerformed
+        String prestamoVerifica = buscarPText.getText();
+        String verificandoPrestamo = tipoPBox.getSelectedItem().toString();
+        prestamo = new Prestamos1();
+        prestamo.verificarPrestamo1(verificandoPrestamo, prestamoVerifica);
+    }//GEN-LAST:event_buscarPBotonActionPerformed
+
+    private void botonDevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDevolucionActionPerformed
+        String devolverVerifica = buscarDevolucionText.getText();
+        String verificandoDevolucion = tipoDevolucionPBox.getSelectedItem().toString();
+        prestamo = new Prestamos1();
+        prestamo.verificarPrestamo1(verificandoDevolucion, devolverVerifica);
+    }//GEN-LAST:event_botonDevolucionActionPerformed
 
     private void iniciarComponentes(){
         ingresarLibroPanel.setVisible(false);

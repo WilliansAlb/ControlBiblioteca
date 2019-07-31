@@ -73,4 +73,108 @@ public class Libros {
     public void setCantidad_prestados(int cantidad_prestados) {
         this.cantidad_prestados = cantidad_prestados;
     }
+    
+    public void verificarLibro1 (String aVerificar, String busqueda){
+        if (aVerificar.equalsIgnoreCase("titulo") || aVerificar.equalsIgnoreCase("autor") || aVerificar.equalsIgnoreCase("editorial")){
+            buscarPorNombre(busqueda);
+        } else if (aVerificar.equalsIgnoreCase("codigo")){
+            buscarPorCodigo(busqueda);
+        }
+    }    
+    public void buscarPorNombre(String buscando){
+        int longitud = buscando.length();
+        String abc = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóú ";
+        int longitudABC = abc.length();
+        int correcto = 0;
+        for (int i = 0; i< longitud; i++)
+        {
+            for (int u = 0; u < longitudABC; u++)
+            {
+            if (buscando.charAt(i)==abc.charAt(u))
+            {
+                correcto++;
+            }
+            }
+        }
+        if (correcto==longitud){
+            System.out.println("Si es un nombre");
+        } else
+        {
+            javax.swing.JOptionPane.showMessageDialog(null, "No es un nombre");
+        }
+    }
+    public void buscarPorCodigo(String buscando){
+        int longitud = buscando.length();
+        String num = "0123456789";
+        String guion = "-";
+        int longitudABC = num.length();
+        int correcto = 0;
+        if (longitud==7){
+            for (int i = 0; i< 3; i++)
+        {
+            for (int u = 0; u < longitudABC; u++)
+            {
+            if (buscando.charAt(i)==num.charAt(u))
+            {
+                correcto++;
+            }
+            }
+        }
+        if (correcto==3 && buscando.charAt(3)==guion.charAt(0)){
+            String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            int correcto2 = 0;
+            for (int i = 4; i< 7; i++)
+        {
+            for (int u = 0; u < abc.length(); u++)
+            {
+            if (buscando.charAt(i)==abc.charAt(u))
+            {
+                correcto2++;
+            }
+            }
+           
+        }
+            if (correcto2==3)
+            {
+                javax.swing.JOptionPane.showMessageDialog(null, "Sí es un codigo de libro valido");
+            }
+        }   else
+        {
+            javax.swing.JOptionPane.showMessageDialog(null, "No es un codigo de libro valido");
+        }
+        } else
+        {
+            javax.swing.JOptionPane.showMessageDialog(null, "No es un codigo de libro valido");
+        }
+        
+    }
+    public void mostrarPorCarrera(String buscando){
+        int buscan = Integer.parseInt(buscando);
+        switch(buscan){
+            case 1: 
+            {
+            System.out.println("Ingeniería");
+            }
+            case 2:
+            {
+            System.out.println("Medicina");
+            }
+            case 3:
+            {
+            System.out.println("Derecho");
+            }
+            case 4:
+            {
+            System.out.println("Arquitectura");
+            }
+            case 5:
+            {
+            System.out.println("Administración");
+            }
+            default:
+            {
+            System.out.println("No es una carrera");
+            }
+        }
+    }
 }
