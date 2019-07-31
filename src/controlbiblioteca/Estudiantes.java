@@ -14,13 +14,28 @@ public class Estudiantes extends javax.swing.JPanel {
     private String nombre;
     private String carne;
     private String carrera;
+    private String fecha;
     /**
      * Creates new form Estudiantes
      */
     public Estudiantes() {
-        initComponents();
     }
 
+    public Estudiantes(String nombre, String carne, String carrera, String fecha) {
+        this.nombre = nombre;
+        this.carne = carne;
+        this.carrera = carrera;
+        this.fecha = fecha;
+    }
+
+    public Estudiantes(String nombre, String carne, String carrera) {
+        this.nombre = nombre;
+        this.carne = carne;
+        this.carrera = carrera;
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
