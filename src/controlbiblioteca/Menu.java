@@ -4,17 +4,31 @@
  * and open the template in the editor.
  */
 package controlbiblioteca;
+import FileManager.Buscador;
+import FileManager.Controlador;
 import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.List;
 import java.net.URL;
+import java.util.ArrayList;
+import org.jdesktop.observablecollections.ObservableList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import org.jdesktop.observablecollections.ObservableCollections;
 /**
  *
  * @author bladimir
  */
 public class Menu extends javax.swing.JFrame {
+     private List encontrados;
+     private ObservableList tablaEncontrados;
+     private List recuperar;
+//     private List<Libros> encontrados;
+//     private ObservableList<Libros> tablaEncontrados;
+//     private List<Libros> recuperar;
+    
     public Image imagenFondo;
     public URL fondo;
     public Libros libro;
@@ -24,6 +38,8 @@ public class Menu extends javax.swing.JFrame {
      * Creates new form Menu
      */
     public Menu() {
+        encontrados = new ArrayList<>();
+        tablaEncontrados = ObservableCollections.observableList(encontrados);
         initComponents();
         iniciarComponentes();
     }
@@ -35,6 +51,7 @@ public class Menu extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         estudiantesPanel = new javax.swing.JPanel();
@@ -57,10 +74,10 @@ public class Menu extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        estTxtNombre = new javax.swing.JTextField();
+        estTxtCarne = new javax.swing.JTextField();
+        estTxtCarrera = new javax.swing.JTextField();
+        estTxtNacimiento = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         librosPanel = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -88,6 +105,8 @@ public class Menu extends javax.swing.JFrame {
         libroTextEditorial = new javax.swing.JTextField();
         libroTextFecha = new javax.swing.JTextField();
         ingresarLBoton = new javax.swing.JButton();
+        libroTextCantidad = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
         prestamosPanel = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         botonBuscarP = new javax.swing.JButton();
@@ -145,7 +164,6 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPane1.setBackground(java.awt.Color.white);
-        jTabbedPane1.setBorder(null);
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
         estudiantesPanel.setBackground(new java.awt.Color(254, 254, 254));
@@ -185,7 +203,7 @@ public class Menu extends javax.swing.JFrame {
         buscarEText.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
 
         tipoEBox.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        tipoEBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Carné", "Carrera" }));
+        tipoEBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carnet", "Nombre", "Carrera" }));
 
         botonBusquedaE.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         botonBusquedaE.setText("BUSCAR");
@@ -195,17 +213,18 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Nombre", "Carné", "Carrera", "Fecha de Nacimiento"
-            }
-        ));
+        org.jdesktop.beansbinding.ELProperty eLProperty = org.jdesktop.beansbinding.ELProperty.create("${encontrados}");
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, jTable1);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${carnet}"));
+        columnBinding.setColumnName("Carnet");
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nombre}"));
+        columnBinding.setColumnName("Nombre");
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${carrera}"));
+        columnBinding.setColumnName("Carrera");
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${fechaNacimiento}"));
+        columnBinding.setColumnName("Nacimiento");
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
         jScrollPane3.setViewportView(jTable1);
 
         javax.swing.GroupLayout buscarEstudianteLayout = new javax.swing.GroupLayout(buscarEstudiante);
@@ -266,6 +285,11 @@ public class Menu extends javax.swing.JFrame {
         jButton4.setText("INGRESAR");
         jButton4.setToolTipText("");
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ingresarEstudianteLayout = new javax.swing.GroupLayout(ingresarEstudiante);
         ingresarEstudiante.setLayout(ingresarEstudianteLayout);
@@ -277,19 +301,19 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(ingresarEstudianteLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2))
+                        .addComponent(estTxtNombre))
                     .addGroup(ingresarEstudianteLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3))
+                        .addComponent(estTxtCarne))
                     .addGroup(ingresarEstudianteLayout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4))
+                        .addComponent(estTxtCarrera))
                     .addGroup(ingresarEstudianteLayout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5)))
+                        .addComponent(estTxtNacimiento)))
                 .addContainerGap())
             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(ingresarEstudianteLayout.createSequentialGroup()
@@ -305,19 +329,19 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(ingresarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(estTxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(ingresarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(estTxtCarne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(ingresarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(estTxtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(ingresarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(estTxtNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
                 .addContainerGap(35, Short.MAX_VALUE))
@@ -372,7 +396,6 @@ public class Menu extends javax.swing.JFrame {
         jTabbedPane1.addTab("Estudiantes", estudiantesPanel);
 
         librosPanel.setBackground(java.awt.Color.white);
-        librosPanel.setBorder(null);
         librosPanel.setOpaque(false);
 
         jLabel13.setFont(new java.awt.Font("Ubuntu", 1, 22)); // NOI18N
@@ -404,7 +427,7 @@ public class Menu extends javax.swing.JFrame {
         libroL2.setText("Busqueda por:");
 
         tipoLBox.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        tipoLBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Titulo", "Autor", "Codigo", "Editorial" }));
+        tipoLBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Titulo", "Autor", "Editorial" }));
 
         buscarLText.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
 
@@ -416,17 +439,31 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Titulo", "Autor", "Codigo del Libro", "Copias", "Fecha Publicacion", "Editorial"
-            }
-        ));
+        eLProperty = org.jdesktop.beansbinding.ELProperty.create("${encontrados}");
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, jTable2);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${codigo}"));
+        columnBinding.setColumnName("Titulo");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${titulo}"));
+        columnBinding.setColumnName("Autor");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${autor}"));
+        columnBinding.setColumnName("Codigo del Libro");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${editorial}"));
+        columnBinding.setColumnName("Copias");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${fecha_publicacion}"));
+        columnBinding.setColumnName("Fecha Publicacion");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cantidad}"));
+        columnBinding.setColumnName("Editorial");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cantidad_prestados}"));
+        columnBinding.setColumnName("Cantidad_prestados");
+        columnBinding.setColumnClass(Integer.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
         jScrollPane5.setViewportView(jTable2);
 
         javax.swing.GroupLayout buscarLibroPanelLayout = new javax.swing.GroupLayout(buscarLibroPanel);
@@ -488,6 +525,14 @@ public class Menu extends javax.swing.JFrame {
         jLabel21.setText("Fecha de publicación:");
 
         ingresarLBoton.setText("INGRESAR");
+        ingresarLBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarLBotonActionPerformed(evt);
+            }
+        });
+
+        jLabel33.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        jLabel33.setText("Cantidad:");
 
         javax.swing.GroupLayout ingresarLibroPanelLayout = new javax.swing.GroupLayout(ingresarLibroPanel);
         ingresarLibroPanel.setLayout(ingresarLibroPanelLayout);
@@ -516,7 +561,11 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(libroTextFecha)))
+                        .addComponent(libroTextFecha))
+                    .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(libroTextCantidad)))
                 .addContainerGap())
             .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
                 .addGap(242, 242, 242)
@@ -548,9 +597,13 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(libroTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(libroTextCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel33))
+                .addGap(17, 17, 17)
                 .addComponent(ingresarLBoton)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLayeredPane2.setLayer(buscarLibroPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -1064,6 +1117,8 @@ public class Menu extends javax.swing.JFrame {
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/controlbiblioteca/biblioteca3.jpg"))); // NOI18N
         getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 520));
 
+        bindingGroup.bind();
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -1088,6 +1143,22 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_crearPrestamoActionPerformed
 
+     public void actualizarLista(List listado) {
+        this.tablaEncontrados.clear();
+        this.tablaEncontrados.addAll(listado);
+    }
+
+    //metodo que entiende la tabla para llenar su informacion
+    public org.jdesktop.observablecollections.ObservableList getEncontrados() {
+        return tablaEncontrados;
+    }
+
+    //cambia la informacion de la tabla
+    public void setListaObservableDatos(org.jdesktop.observablecollections.ObservableList listaDatos) {
+        this.tablaEncontrados = listaDatos;
+    }
+
+    
     private void botonDevolverPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDevolverPActionPerformed
         botonBuscarP.setEnabled(true);
         botonNuevoP.setEnabled(true);
@@ -1156,13 +1227,20 @@ public class Menu extends javax.swing.JFrame {
         String verificandoEstudiante1 = tipoEBox.getSelectedItem().toString();
         estudiante = new Estudiantes();
         estudiante.verificarEstudiante(verificandoEstudiante1, estudianteVerifica);
+         recuperar = Buscador.buscarEstudiante(estudianteVerifica, tipoEBox.getSelectedIndex(), Estudiantes.PATH);
+        encontrados = recuperar;
+        actualizarLista(encontrados);
     }//GEN-LAST:event_botonBusquedaEActionPerformed
 
     private void buscarLBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLBotonActionPerformed
         String libroVerifica = buscarLText.getText();
         String verificandoLibro = tipoLBox.getSelectedItem().toString();
         libro = new Libros();
-        libro.verificarLibro1(verificandoLibro, libroVerifica);
+        recuperar = Buscador.buscarLibro(libroVerifica, tipoLBox.getSelectedIndex(), Libros.PATH);
+        encontrados = recuperar;
+        actualizarLista(encontrados);
+       
+        
     }//GEN-LAST:event_buscarLBotonActionPerformed
 
     private void buscarPBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPBotonActionPerformed
@@ -1178,6 +1256,61 @@ public class Menu extends javax.swing.JFrame {
         prestamo = new Prestamos1();
         prestamo.verificarPrestamo1(verificandoDevolucion, devolverVerifica);
     }//GEN-LAST:event_botonDevolucionActionPerformed
+
+    private void ingresarLBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarLBotonActionPerformed
+        String titulo;
+        String autor;
+        String editorial;
+        String codigo;
+        String fecha;
+        int cantidad = 0;
+        
+        titulo = libroTextTitulo.getText();
+        autor = libroTextAutor.getText();
+        editorial = libroTextEditorial.getText();
+        codigo = libroTextCodigo.getText();
+        fecha = libroTextFecha.getText();
+        try {
+            cantidad = Integer.valueOf(libroTextCantidad.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(prestamosPanel, "Por favor coloque la cantidad en numeros");
+        }
+        Libros libro = new Libros(titulo, autor, editorial, fecha, codigo, cantidad);
+        if (libro.verificarLibro1("titulo", libro.getTitulo())
+            && libro.verificarLibro1("autor", libro.getAutor())
+            && libro.verificarLibro1("editorial", libro.getEditorial())
+            && libro.verificarLibro1("codigo", libro.getCodigo())
+                ) {
+            Controlador.guardar(libro, Libros.PATH + "/" + libro.getCodigo() + 
+                    Controlador.EXT);
+        }
+
+        
+    }//GEN-LAST:event_ingresarLBotonActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String nombre;
+        int carne = 0;
+        int carrera =0;
+        String fNacimiento;
+        
+        nombre = estTxtNombre.getText();
+        fNacimiento = estTxtNacimiento.getText();
+        try {
+            carne = Integer.parseInt(estTxtCarne.getText());
+            carrera = Integer.parseInt(estTxtCarrera.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(prestamosPanel, "Por favor coloque la carrera y el carne en numeros");
+        }
+        Estudiantes estudiante = new Estudiantes(nombre, carne, fNacimiento, carrera);
+        if (estudiante.verificarEstudiante("nombre", nombre)
+            && estudiante.verificarEstudiante("carne", String.valueOf(carne))
+                && estudiante.verificarEstudiante("carrera", String.valueOf(carrera))
+                ) {
+            Controlador.guardar(estudiante, Estudiantes.PATH + "/" + estudiante.getCarnet() + 
+                    Controlador.EXT);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void iniciarComponentes(){
         ingresarLibroPanel.setVisible(false);
@@ -1253,6 +1386,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel buscarPrestamo;
     private javax.swing.JButton crearPrestamo;
     private javax.swing.JPanel devolverPrestamo;
+    private javax.swing.JTextField estTxtCarne;
+    private javax.swing.JTextField estTxtCarrera;
+    private javax.swing.JTextField estTxtNacimiento;
+    private javax.swing.JTextField estTxtNombre;
     private javax.swing.JPanel estudiantesPanel;
     private javax.swing.JComboBox<String> generaReportesBox;
     private javax.swing.JPanel ingresarEstudiante;
@@ -1282,6 +1419,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1306,15 +1444,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel libroL1;
     private javax.swing.JLabel libroL2;
     private javax.swing.JLabel libroL3;
     private javax.swing.JLabel libroL4;
     private javax.swing.JTextField libroTextAutor;
+    private javax.swing.JTextField libroTextCantidad;
     private javax.swing.JTextField libroTextCodigo;
     private javax.swing.JTextField libroTextEditorial;
     private javax.swing.JTextField libroTextFecha;
@@ -1331,5 +1466,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> tipoEBox;
     private javax.swing.JComboBox<String> tipoLBox;
     private javax.swing.JComboBox<String> tipoPBox;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

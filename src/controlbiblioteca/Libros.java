@@ -5,11 +5,15 @@
  */
 package controlbiblioteca;
 
+import java.io.Serializable;
+
 /**
  *
  * @author willians
  */
-public class Libros {
+public class Libros implements Serializable{
+    public static final String PATH = "./Biblio/Libros";
+    
     private String titulo;
     private String autor;
     private String editorial;
@@ -18,6 +22,26 @@ public class Libros {
     private int cantidad;
     private int cantidad_prestados;
 
+    public Libros() {
+    }
+
+    public Libros(String titulo, String autor, String editorial, String fecha_publicacion, String codigo, int cantidad) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.editorial = editorial;
+        this.fecha_publicacion = fecha_publicacion;
+        this.codigo = codigo;
+        this.cantidad = cantidad;
+    }
+
+    public Libros(String titulo, String autor, String codigo, int cantidad) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.codigo = codigo;
+        this.cantidad = cantidad;
+    }
+    
+    
     public String getTitulo() {
         return titulo;
     }
@@ -74,14 +98,15 @@ public class Libros {
         this.cantidad_prestados = cantidad_prestados;
     }
     
-    public void verificarLibro1 (String aVerificar, String busqueda){
+    public boolean verificarLibro1 (String aVerificar, String busqueda){
         if (aVerificar.equalsIgnoreCase("titulo") || aVerificar.equalsIgnoreCase("autor") || aVerificar.equalsIgnoreCase("editorial")){
-            buscarPorNombre(busqueda);
+            return buscarPorNombre(busqueda);
         } else if (aVerificar.equalsIgnoreCase("codigo")){
-            buscarPorCodigo(busqueda);
+            return buscarPorCodigo(busqueda);
         }
+        return false;
     }    
-    public void buscarPorNombre(String buscando){
+    public boolean buscarPorNombre(String buscando){
         int longitud = buscando.length();
         String abc = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóú ";
         int longitudABC = abc.length();
@@ -98,55 +123,51 @@ public class Libros {
         }
         if (correcto==longitud){
             System.out.println("Si es un nombre");
+            return true;
         } else
         {
             javax.swing.JOptionPane.showMessageDialog(null, "No es un nombre");
+            return false;
         }
     }
-    public void buscarPorCodigo(String buscando){
+    public boolean buscarPorCodigo(String buscando){
         int longitud = buscando.length();
         String num = "0123456789";
         String guion = "-";
         int longitudABC = num.length();
         int correcto = 0;
         if (longitud==7){
-            for (int i = 0; i< 3; i++)
-        {
-            for (int u = 0; u < longitudABC; u++)
-            {
-            if (buscando.charAt(i)==num.charAt(u))
-            {
-                correcto++;
+            for (int i = 0; i< 3; i++){
+                for (int u = 0; u < longitudABC; u++){
+                    if (buscando.charAt(i)==num.charAt(u)){
+                        correcto++;
+                    }
+                }
             }
-            }
-        }
-        if (correcto==3 && buscando.charAt(3)==guion.charAt(0)){
-            String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            int correcto2 = 0;
-            for (int i = 4; i< 7; i++)
-        {
-            for (int u = 0; u < abc.length(); u++)
-            {
-            if (buscando.charAt(i)==abc.charAt(u))
-            {
-                correcto2++;
-            }
-            }
+            if (correcto==3 && buscando.charAt(3)==guion.charAt(0)){
+                String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                int correcto2 = 0;
+                for (int i = 4; i< 7; i++){
+                    for (int u = 0; u < abc.length(); u++){
+                        if (buscando.charAt(i)==abc.charAt(u)){
+                            correcto2++;
+                        }
+                    }
            
-        }
-            if (correcto2==3)
-            {
-                javax.swing.JOptionPane.showMessageDialog(null, "Sí es un codigo de libro valido");
+                }
+                if (correcto2==3)  {
+                    javax.swing.JOptionPane.showMessageDialog(null, "Sí es un codigo de libro valido");
+                    return true;
+                }
+            }   else {
+                javax.swing.JOptionPane.showMessageDialog(null, "No es un codigo de libro valido");
+                return false;
             }
-        }   else
-        {
+        } else {
             javax.swing.JOptionPane.showMessageDialog(null, "No es un codigo de libro valido");
+            return false;
         }
-        } else
-        {
-            javax.swing.JOptionPane.showMessageDialog(null, "No es un codigo de libro valido");
-        }
-        
+     return false;   
     }
     public void mostrarPorCarrera(String buscando){
         int buscan = Integer.parseInt(buscando);

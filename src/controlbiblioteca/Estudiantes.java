@@ -5,17 +5,39 @@
  */
 package controlbiblioteca;
 
+import java.io.Serializable;
+
 /**
  *
  * @author willians
  */
-public class Estudiantes {
+public class Estudiantes implements Serializable{
+    public static final String PATH = "./Biblio/Estudiantes";
     
     private String nombre;
     private int carnet;
     private String fechaNacimiento;
-    private String[] carrera={"Ingeniería","Medicina","Derecho","Arquitectura","Administración"};
+    private int carrera;
+    private String[] carreraA={"Ingeniería","Medicina","Derecho","Arquitectura","Administración"};
 
+    public Estudiantes() {
+    }
+
+    public Estudiantes(String nombre, int carnet, String fechaNacimiento, int carrera) {
+        this.nombre = nombre;
+        this.carnet = carnet;
+        this.fechaNacimiento = fechaNacimiento;
+        this.carrera = carrera;
+    }
+
+    public Estudiantes(String nombre, int carnet, int carrera) {
+        this.nombre = nombre;
+        this.carnet = carnet;
+        this.carrera = carrera;
+    }
+
+    
+    
     public String getNombre() {
         return nombre;
     }
@@ -40,24 +62,25 @@ public class Estudiantes {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String[] getCarrera() {
+    public int getCarrera() {
         return carrera;
     }
 
-    public void setCarrera(String[] carrera) {
+    public void setCarrera(int carrera) {
         this.carrera = carrera;
     }
     
-    public void verificarEstudiante(String aVerificar, String busqueda){
+    public boolean verificarEstudiante(String aVerificar, String busqueda){
         if (aVerificar.equalsIgnoreCase("nombre")){
-            buscarPorNombre(busqueda);
-        } else if (aVerificar.equalsIgnoreCase("carné")){
-            buscarPorCarne(busqueda);
+            return buscarPorNombre(busqueda);
+        } else if (aVerificar.equalsIgnoreCase("carne")){
+            return buscarPorCarne(busqueda);
         } else if (aVerificar.equalsIgnoreCase("carrera")){
-            mostrarPorCarrera(busqueda);
+            return mostrarPorCarrera(busqueda);
         } 
+        return false;
     }
-    public void buscarPorNombre(String buscando){
+    public boolean buscarPorNombre(String buscando){
         int longitud = buscando.length();
         String abc = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóú ";
         int longitudABC = abc.length();
@@ -74,12 +97,14 @@ public class Estudiantes {
         }
         if (correcto==longitud){
             System.out.println("Si es un nombre");
+            return true;
         } else
         {
             javax.swing.JOptionPane.showMessageDialog(null, "No es un nombre");
+            return false;
         }
     }
-    public void buscarPorCarne(String buscando){
+    public boolean buscarPorCarne(String buscando){
         int longitud = buscando.length();
         String abc = "0123456789";
         int longitudABC = abc.length();
@@ -96,37 +121,45 @@ public class Estudiantes {
         }
         if (correcto==longitud && correcto==9){
             System.out.println("Si es un carné");
+            return true;
         } else
         {
             javax.swing.JOptionPane.showMessageDialog(null, "No es un carné valido");
+            return false;
         }
     }
-    public void mostrarPorCarrera(String buscando){
+    public boolean mostrarPorCarrera(String buscando){
         int buscan = Integer.parseInt(buscando);
         switch(buscan){
             case 1: 
             {
             System.out.println("Ingeniería");
+            return true;
             }
             case 2:
             {
             System.out.println("Medicina");
+            return true;
             }
             case 3:
             {
             System.out.println("Derecho");
+            return true;
             }
             case 4:
             {
             System.out.println("Arquitectura");
+            return true;
             }
             case 5:
             {
             System.out.println("Administración");
+            return true;
             }
             default:
             {
             System.out.println("No es una carrera");
+            return false;
             }
         }
     }

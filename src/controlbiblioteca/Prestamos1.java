@@ -16,7 +16,7 @@ public class Prestamos1 {
     private int carnet;
     private String fecha;
     private int mora;
-    private int moto;
+    private int monto;
 
     public int getCodigo_prestamos() {
         return codigo_prestamos;
@@ -59,11 +59,11 @@ public class Prestamos1 {
     }
 
     public int getMoto() {
-        return moto;
+        return monto;
     }
 
     public void setMoto(int moto) {
-        this.moto = moto;
+        this.monto = moto;
     }
     
     public void verificarPrestamo1 (String aVerificar, String busqueda){
