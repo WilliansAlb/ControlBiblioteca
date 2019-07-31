@@ -1,0 +1,3 @@
+Daniel -------- Manejo de archivos binarios
+Bladimir ------- Carga de archivos
+Willians ------- Interfaz y verificación de los datos que ingrese el usuario
