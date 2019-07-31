@@ -5,6 +5,8 @@
  */
 package controlbiblioteca;
 
+import FileManager.Controlador;
+
 /**
  *
  * @author willians
@@ -12,8 +14,7 @@ package controlbiblioteca;
 public class ControlBiblioteca {
    
     public static void main(String args[]){
-        //Biblioteca nueva = new Biblioteca();
-        //nueva.setVisible(true);
+        Controlador.paths();
         Menu ir=new Menu();
         ir.setVisible(true);
     }   

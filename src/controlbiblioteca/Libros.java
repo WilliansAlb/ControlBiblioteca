@@ -10,13 +10,36 @@ package controlbiblioteca;
  * @author willians
  */
 public class Libros {
+    public static final String PATH = "./Biblio/Libros";
     private String titulo;
     private String autor;
     private String editorial;
-    private String fecha_publicacion;
+    private String fechaPublicacion;
     private String codigo;
     private int cantidad;
-    private int cantidad_prestados;
+    private int cantidadLibrosPrestados;
+
+    public Libros(String titulo, String autor, String codigo, int cantidad, String fecha, String editorial) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.codigo = codigo;
+        this.cantidad = cantidad;
+        this.fechaPublicacion = fecha;
+        this.editorial = editorial; }
+
+    public Libros() {}
+    
+    @Override
+    public String toString() {
+       return "Libro: "  + codigo + "; " + titulo  + "; " +  autor + "; " +
+               editorial + "; " + fechaPublicacion + "; " + cantidad;
+    }
+    public Libros(String titulo, String autor, String codigo, int cantidad) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.codigo = codigo;
+        this.cantidad = cantidad;
+    }
 
     public String getTitulo() {
         return titulo;
@@ -32,22 +55,6 @@ public class Libros {
 
     public void setAutor(String autor) {
         this.autor = autor;
-    }
-
-    public String getEditorial() {
-        return editorial;
-    }
-
-    public void setEditorial(String editorial) {
-        this.editorial = editorial;
-    }
-
-    public String getFecha_publicacion() {
-        return fecha_publicacion;
-    }
-
-    public void setFecha_publicacion(String fecha_publicacion) {
-        this.fecha_publicacion = fecha_publicacion;
     }
 
     public String getCodigo() {
@@ -66,12 +73,28 @@ public class Libros {
         this.cantidad = cantidad;
     }
 
-    public int getCantidad_prestados() {
-        return cantidad_prestados;
+    public int getCantidadLibrosPrestados() {
+        return cantidadLibrosPrestados;
     }
 
-    public void setCantidad_prestados(int cantidad_prestados) {
-        this.cantidad_prestados = cantidad_prestados;
+    public void setCantidadLibrosPrestados(int cantidadLibrosPrestados) {
+        this.cantidadLibrosPrestados = cantidadLibrosPrestados;
+    }
+
+    public String getFechaPublicacion() {
+        return fechaPublicacion;
+    }
+
+    public void setFechaPublicacion(String fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
+    }
+
+    public String getEditorial() {
+        return editorial;
+    }
+
+    public void setEditorial(String editorial) {
+        this.editorial = editorial;
     }
     
     public void verificarLibro1 (String aVerificar, String busqueda){
