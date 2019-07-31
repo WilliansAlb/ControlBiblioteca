@@ -9,12 +9,23 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.net.URL;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import FileManager.*;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 /**
  *
  * @author bladimir
  */
 public class Menu extends javax.swing.JFrame {
+    
+    
     public Image imagenFondo;
     public URL fondo;
     /**
@@ -23,6 +34,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         
+        txt_parametroL.setVisible(false);
         fondo = this.getClass().getResource("/controlbiblioteca/biblioteca3.png");
         imagenFondo = new ImageIcon(fondo).getImage();
         
@@ -75,23 +87,26 @@ public class Menu extends javax.swing.JFrame {
         jLayeredPane2 = new javax.swing.JLayeredPane();
         buscarLibroPanel = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
+        parametroL = new javax.swing.JFormattedTextField();
+        txt_parametroL = new javax.swing.JTextField();
         ingresarLibroPanel = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        tituloLlibro = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        autorLibro = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        editorialLibro = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
+        fechaLibro = new javax.swing.JTextField();
+        btn_IngresarLibro = new javax.swing.JButton();
+        codigoLibro = new javax.swing.JFormattedTextField();
+        jLabel35 = new javax.swing.JLabel();
+        cantidadLibro = new javax.swing.JFormattedTextField();
         prestamosPanel = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         botonBuscarP = new javax.swing.JButton();
@@ -283,7 +298,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jLayeredPane1.setLayer(buscarEstudiante, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -333,7 +348,6 @@ public class Menu extends javax.swing.JFrame {
         jTabbedPane1.addTab("Estudiantes", estudiantesPanel);
 
         librosPanel.setBackground(new java.awt.Color(254, 254, 254));
-        librosPanel.setBorder(null);
 
         jLabel13.setFont(new java.awt.Font("Ubuntu", 1, 22)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -359,29 +373,53 @@ public class Menu extends javax.swing.JFrame {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Ingresa lo que desees buscar:");
 
-        jTextField6.setText("jTextField6");
-
         jButton5.setText("BUSCAR");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nombre", "Autor" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Busqueda por:");
+
+        try {
+            parametroL.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-UUU")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        parametroL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                parametroLActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout buscarLibroPanelLayout = new javax.swing.GroupLayout(buscarLibroPanel);
         buscarLibroPanel.setLayout(buscarLibroPanelLayout);
         buscarLibroPanelLayout.setHorizontalGroup(
             buscarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buscarLibroPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(buscarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField6)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
+                .addGroup(buscarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(buscarLibroPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(buscarLibroPanelLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(buscarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_parametroL)
+                            .addComponent(parametroL))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(buscarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton5)
                 .addContainerGap())
@@ -395,10 +433,11 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(buscarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(271, Short.MAX_VALUE))
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(parametroL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_parametroL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(284, Short.MAX_VALUE))
         );
 
         ingresarLibroPanel.setOpaque(false);
@@ -410,29 +449,43 @@ public class Menu extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel17.setText("Titulo del libro:");
 
-        jTextField7.setText("jTextField7");
+        tituloLlibro.setText("jTextField7");
 
         jLabel18.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel18.setText("Codigo del libro:");
 
-        jTextField8.setText("jTextField8");
-
         jLabel19.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel19.setText("Autor del libro:");
 
-        jTextField9.setText("jTextField9");
+        autorLibro.setText("jTextField9");
 
         jLabel20.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel20.setText("Editorial:");
 
-        jTextField10.setText("jTextField10");
+        editorialLibro.setText("jTextField10");
 
         jLabel21.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel21.setText("Fecha de publicación:");
 
-        jTextField11.setText("jTextField11");
+        fechaLibro.setText("jTextField11");
 
-        jButton6.setText("INGRESAR");
+        btn_IngresarLibro.setText("INGRESAR");
+        btn_IngresarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_IngresarLibroActionPerformed(evt);
+            }
+        });
+
+        try {
+            codigoLibro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-UUU")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel35.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        jLabel35.setText("Cantidad:");
+
+        cantidadLibro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         javax.swing.GroupLayout ingresarLibroPanelLayout = new javax.swing.GroupLayout(ingresarLibroPanel);
         ingresarLibroPanel.setLayout(ingresarLibroPanelLayout);
@@ -440,33 +493,42 @@ public class Menu extends javax.swing.JFrame {
             ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField7))
+                        .addContainerGap()
+                        .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tituloLlibro))
+                            .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(autorLibro))
+                            .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(codigoLibro))
+                            .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editorialLibro))
+                            .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cantidadLibro)
+                                    .addComponent(fechaLibro, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)))))
                     .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField9))
-                    .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField8))
-                    .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField10))
-                    .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField11)))
+                        .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
+                                .addGap(230, 230, 230)
+                                .addComponent(btn_IngresarLibro))
+                            .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel35)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(ingresarLibroPanelLayout.createSequentialGroup()
-                .addGap(242, 242, 242)
-                .addComponent(jButton6)
-                .addContainerGap(242, Short.MAX_VALUE))
         );
         ingresarLibroPanelLayout.setVerticalGroup(
             ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,26 +538,30 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tituloLlibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(autorLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(codigoLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editorialLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton6)
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addComponent(fechaLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ingresarLibroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel35)
+                    .addComponent(cantidadLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(btn_IngresarLibro)
+                .addContainerGap())
         );
 
         jLayeredPane2.setLayer(buscarLibroPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -619,7 +685,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8))
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(263, Short.MAX_VALUE))
         );
 
         nuevoPrestamo.setOpaque(false);
@@ -970,6 +1036,8 @@ public class Menu extends javax.swing.JFrame {
         botonIngresarL.setEnabled(true);
         buscarLibroPanel.setVisible(true);
         ingresarLibroPanel.setVisible(false);
+        
+       
     }//GEN-LAST:event_botonBuscarLActionPerformed
 
     private void botonIngresarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarEActionPerformed
@@ -985,6 +1053,95 @@ public class Menu extends javax.swing.JFrame {
         buscarEstudiante.setVisible(true);
         ingresarEstudiante.setVisible(false);
     }//GEN-LAST:event_botonBuscarEActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        Libros buscado = new Libros();
+        ArrayList<Libros> libros = new ArrayList();
+        
+        String parametro =  parametroL.getText().trim();
+        String codigo[];
+        int tipo = jComboBox2.getSelectedIndex(); 
+        if (!parametro.equals("")) {
+            if (tipo == 0 && parametro.contains("-")) {
+                codigo = parametro.trim().split("-");
+                if (codigo.length == 2) {
+                    if (!codigo[0].isEmpty() && !codigo[1].isEmpty()
+                            && codigo[0].length()== 3 && codigo[1].length()==3
+                        ) {
+                        
+                        libros = Buscador.buscarLibro(parametro, tipo, Libros.PATH);
+                    } else {
+                       JOptionPane.showMessageDialog(prestamosPanel, "Codigo invalido");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(prestamosPanel, "Codigo invalido");
+                }
+            } else  {
+                parametro = txt_parametroL.getText();
+                libros = Buscador.buscarLibro(parametro, tipo, Libros.PATH);
+            }
+             if (libros.isEmpty()) {
+                    JOptionPane.showMessageDialog(prestamosPanel, "Libro inexistente");
+                } else {
+                    for (Libros encontrado : libros) {
+                        System.out.println(encontrado.toString());
+                    }
+                }
+        } else {
+            JOptionPane.showMessageDialog(prestamosPanel, "Parametro de busqueda invalido");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        
+        
+        parametroL.setText("");
+        txt_parametroL.setText("");
+        int tipo = jComboBox2.getSelectedIndex();
+        
+            switch (tipo) {
+            case 0:
+        
+                parametroL.setVisible(true);
+                txt_parametroL.setVisible(false);
+                break;
+            case 1:
+                parametroL.setVisible(false);
+                txt_parametroL.setVisible(true);
+                break;
+            case 2:
+                parametroL.setVisible(false);               
+                txt_parametroL.setVisible(true);
+                break;
+            }
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void btn_IngresarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarLibroActionPerformed
+        String titulo;
+        String autor;
+        String editorial;
+        String codigo;
+        String fecha;
+        int cantidad;
+        
+        titulo = tituloLlibro.getText();
+        autor = autorLibro.getText();
+        editorial = editorialLibro.getText();
+        codigo = codigoLibro.getText();
+        fecha = fechaLibro.getText();
+        cantidad = Integer.valueOf(cantidadLibro.getText());
+        Libros libro = new Libros(titulo, autor, codigo, cantidad, fecha, editorial);
+        Controlador.guardar(libro,Libros.PATH + "/" + libro.getCodigo() +
+                Controlador.EXT);
+    }//GEN-LAST:event_btn_IngresarLibroActionPerformed
+
+    private void parametroLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parametroLActionPerformed
+//         try {
+//            parametroL.commitEdit();
+//        } catch (ParseException ex) {
+//            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }//GEN-LAST:event_parametroLActionPerformed
 
     private void iniciarComponentes(){
         ingresarLibroPanel.setVisible(false);
@@ -1039,6 +1196,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;
     private javax.swing.JPanel archivosPanel;
+    private javax.swing.JTextField autorLibro;
     private javax.swing.JButton botonBuscarE;
     private javax.swing.JButton botonBuscarL;
     private javax.swing.JButton botonBuscarP;
@@ -1047,18 +1205,22 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton botonIngresarE;
     private javax.swing.JButton botonIngresarL;
     private javax.swing.JButton botonNuevoP;
+    private javax.swing.JButton btn_IngresarLibro;
     private javax.swing.JPanel buscarEstudiante;
     private javax.swing.JPanel buscarLibroPanel;
     private javax.swing.JPanel buscarPrestamo;
+    private javax.swing.JFormattedTextField cantidadLibro;
+    private javax.swing.JFormattedTextField codigoLibro;
     private javax.swing.JPanel devolverPrestamo;
+    private javax.swing.JTextField editorialLibro;
     private javax.swing.JPanel estudiantesPanel;
+    private javax.swing.JTextField fechaLibro;
     private javax.swing.JPanel ingresarEstudiante;
     private javax.swing.JPanel ingresarLibroPanel;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -1093,6 +1255,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1108,8 +1271,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
@@ -1119,12 +1280,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel librosPanel;
     private javax.swing.JPanel nuevoPrestamo;
+    private javax.swing.JFormattedTextField parametroL;
     private javax.swing.JPanel prestamosPanel;
+    private javax.swing.JTextField tituloLlibro;
+    private javax.swing.JTextField txt_parametroL;
     // End of variables declaration//GEN-END:variables
 }
